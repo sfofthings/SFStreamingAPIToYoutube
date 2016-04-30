@@ -16,6 +16,8 @@ var io = require('socket.io')(server);
 // get a reference to the socket once a client connects
 var socket = io.sockets.on('connection', function (socket) { });
 
+
+// --------- Connection to app to SalesForce
 var org = nforce.createConnection({
   clientId: config.CLIENT_ID,
   clientSecret: config.CLIENT_SECRET,
@@ -46,11 +48,36 @@ org.authenticate({ username: config.USERNAME, password: config.PASSWORD }, funct
   str.on('data', function(data) {
     console.log('Received the following from pushtopic:');
     console.log(data);
+
+    // Get the who ID
+    var ownerId = data['sobject']['OwnerId'];
+    
+    console.log('results' + ownerId);
+
+    getUser();
+
     // emit the record to be displayed on the page
     socket.emit('record-processed', JSON.stringify(data));
+
+
   });
 
 });
+
+
+var getUser = function(ownerId, org) {
+
+  var q = "Select FirstName, LastName, Title from User where UserId =" + ownerId + "'";
+  org.query({ query: q }, function(err, resp){
+
+    if(!err && resp.records) {
+
+      var user = resp.records[0];
+      socket.emit('GetUserInfo',user);
+    }
+  }
+};
+
 
 app.set('port', process.env.PORT || 3001);
 
@@ -65,6 +92,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(__dirname + '/../.tmp'));
 
 app.use('/', routes);
 

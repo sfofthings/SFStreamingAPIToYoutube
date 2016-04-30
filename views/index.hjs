@@ -5,8 +5,46 @@
     <link rel="stylesheet" href="/stylesheets/style.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/accounting.js/0.4.1/accounting.min.js"></script>
+    <script src="main.js"></script>
+    <script src="http://www.youtube.com/player_api"></script>
+
     <script src="/socket.io/socket.io.js"></script>
     <script type="text/javascript">
+  // create youtube player
+    var player;
+
+
+
+    function onYouTubePlayerAPIReady() {
+        $('#player').hide();
+        player = new YT.Player('player', {
+          height: '390',
+          width: '640',
+          videoId: '3GwjfUFyY6M',
+          events: {
+            'onStateChange': onPlayerStateChange
+          }
+        });
+    }
+/*
+    // autoplay video
+    function onPlayerReady(event) {
+        event.target.playVideo();
+    }
+  */
+    function playVideo() {
+        player.loadVideoById('zS1cLOIxsQ8',30,'large');        
+        player.playVideo();
+        $('#player').show();
+    }
+    
+    // when video ends
+    function onPlayerStateChange(event) {        
+        if(event.data === 0) {                        
+            $("#player").hide();
+        }
+    }
+
       var url = window.location.href.split("/");
       var socket =  io.connect(url[0] + "//" + url[2]); 
       console.log('socket:' + socket);
@@ -15,8 +53,14 @@
         var results = JSON.parse(data);
         console.log(data);
         console.log(results);
-        $('<div>Account Receieved: '+results['sobject']['Name'] +'</div>').
-        $('<div>Amount: ' + accounting.formatMoney(results['sobject']['Amount']) + '</div>').prependTo('#messages');
+        $('<div>Account Receieved: '+results['sobject']['Name'] +'</div>').prependTo('#messages');       
+          playVideo();
+       
+      })
+
+      socket.on('GetUserInfo', function(data) {
+        var results = JSON.parse(data);
+        console.log('results is ' + results);
       })
     </script>
   </head>
@@ -24,5 +68,6 @@
     <h1>{{ title }}</h1>
     <p>Create an account in your Salesforce org and the same will appear here below in real-time !!! </p>
     <div id="messages"></div>
+    <div id="player"></div>
   </body>
 </html>
