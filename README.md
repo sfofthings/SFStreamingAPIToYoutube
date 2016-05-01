@@ -1,11 +1,16 @@
-#Salesforce-Node.JS integration with Streaming API
-==================================================
+#Force.com Streaming API to notify Opportunities which have Closed Won
+======================================================================
 
-Node demo that streams newly created and updated Account records in Salesforce.com to the browser using socket.io. You can run the demo by opening two browsers:
+Derived from various sources from the web which allows Streaming API PushTopic messages to be subscribed by using Socket.io.
+This sample code will play a youtube clip
 
-For a detailed step-by-step guide and demo video refer [Salesforce-Node.JS integration with Streaming API](https://inteygrate.com/salesforce-nodejs-integration-with-streaming-api/)
+#Tech Stack used:
+* [SalesForce Streaming API](https://developer.salesforce.com/docs/atlas.en-us.api_streaming.meta/api_streaming/)
+* Node.js (particularly Socket.io, Express.js)
+* [Animate.css](https://daneden.github.io/animate.css/) - add some animation
+* [Youtube IFrame Player
+](https://developers.google.com/youtube/iframe_api_reference)
 
-This has been modified to include gulp, browserify and also React.js interface to display the changes when opportunity is closed won status.
 
 #Please note
 
