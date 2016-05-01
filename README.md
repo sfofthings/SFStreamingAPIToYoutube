@@ -1,7 +1,8 @@
 #Force.com Streaming API to notify Opportunities which have Closed Won
 ======================================================================
 
-Derived from various sources from the web which allows Streaming API PushTopic messages to be subscribed by using Socket.io. because I couldn't get the cometd.js and dojo.js to work.
+Derived from various sources from the web which allows Streaming API PushTopic messages to be subscribed by using Socket.io.
+
 This sample code will play a youtube clip as soon as an Opportunity's Stage = 'Closed Won' which means it's time to celebrate the Sales Conversion!!!!
 
 I will write some of the details of the PushTopic setup with Workbench in a blog post very soon.
@@ -18,9 +19,25 @@ I will write some of the details of the PushTopic setup with Workbench in a blog
 
 Create a new PushTopic using Workbench with the following Snippet:
 
+##Create a new Apex PushTopic
+
+```
+#!Apex
 
 
-##make sure to create a new *config.js* file needs to following:
+PushTopic pushTopic = new PushTopic();
+pushTopic.ApiVersion = 34.0;
+pushTopic.Name = 'Won';
+pushTopic.Description = 'Notify if the Opportunity won';
+pushTopic.NotifyForFields = 'Referenced';
+pushTopic.NotifyForOperationUpdate = true;
+pushtopic.Query = 'Select o.OwnerId, o.Name, o.IsWon, o.Id, o.Amount, o.StageName From Opportunity o WHERE o.IsWon = true';
+insert pushTopic;
+System.debug('Created new PushTopic: '+ pushTopic.Id);
+
+```
+
+##make sure to create a new *config.js* file containing the following:
 
 
 ```
