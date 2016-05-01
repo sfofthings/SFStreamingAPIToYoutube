@@ -1,8 +1,10 @@
 #Force.com Streaming API to notify Opportunities which have Closed Won
 ======================================================================
 
-Derived from various sources from the web which allows Streaming API PushTopic messages to be subscribed by using Socket.io.
-This sample code will play a youtube clip
+Derived from various sources from the web which allows Streaming API PushTopic messages to be subscribed by using Socket.io. because I couldn't get the cometd.js and dojo.js to work.
+This sample code will play a youtube clip as soon as an Opportunity's Stage = 'Closed Won' which means it's time to celebrate the Sales Conversion!!!!
+
+I will write some of the details of the PushTopic setup with Workbench in a blog post very soon.
 
 #Tech Stack used:
 * [SalesForce Streaming API](https://developer.salesforce.com/docs/atlas.en-us.api_streaming.meta/api_streaming/)
@@ -14,7 +16,15 @@ This sample code will play a youtube clip
 
 #Please note the following:
 
-make sure to create a new *config.js* file needs to following:
+Create a new PushTopic using Workbench with the following Snippet:
+
+
+
+##make sure to create a new *config.js* file needs to following:
+
+
+```
+#!javascript
 
 exports.PORT = 3001;
 
@@ -33,3 +43,4 @@ exports.CLIENT_SECRET = ""; // Consumer Secret
 exports.USERNAME = ""; // Salesforce Login Username
 
 exports.PASSWORD = "" // Salesforce Password + Token
+```
