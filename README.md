@@ -17,8 +17,6 @@ I will write some of the details of the PushTopic setup with Workbench in a blog
 
 #Please note the following:
 
-Create a new PushTopic using Workbench with the following Snippet:
-
 ##Create a new Apex PushTopic
 
 ```
