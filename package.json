@@ -1,6 +1,6 @@
 {
   "name": "node-streaming-socketio",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "engines": {
     "node": "0.8.x",
     "npm": "1.1.x"
@@ -10,12 +10,9 @@
     "start": "node ./bin/www"
   },
   "dependencies": {
-    "babel-preset-react": "^6.5.0",
-    "babelify": "^7.3.0",
     "body-parser": "~1.8.1",
     "bower": "^1.7.9",
     "browser-sync": "^2.12.5",
-    "browserify": "^13.0.0",
     "cookie-parser": "~1.3.3",
     "debug": "~2.0.0",
     "express": "~4.9.0",
@@ -24,12 +21,8 @@
     "hjs": "~0.0.6",
     "morgan": "~1.3.0",
     "nforce": "*",
-    "react": "^15.0.1",
-    "react-dom": "^15.0.1",
-    "reactify": "^1.1.1",
     "serve-favicon": "~2.1.3",
     "socket.io": "*",
-    "vinyl-source-stream": "^1.1.0"
   },
   "devDependencies": {
     "gulp-livereload": "^3.8.1"

@@ -38,12 +38,7 @@
         $('#player').hide();
 
     }
-/*
-    // autoplay video
-    function onPlayerReady(event) {
-        event.target.playVideo();
-    }
-  */
+
     function playVideo() {
         player.loadVideoById('kVJu9AMJJr4',2,'large');        
         player.playVideo();
@@ -65,8 +60,8 @@
         var results = JSON.parse(data);
         console.log(data);
         console.log(results);
-        $('<div>Account Receieved: '+results['sobject']['Name'] +'</div>').prependTo('#messages');       
-          playVideo();
+        $('<div>Opportunity '+results['sobject']['Name'] +'</div>').appendTo('#messages');       
+        playVideo();
        
       })
 
@@ -76,15 +71,17 @@
         console.log('data returned ' + data);
         var results = JSON.parse(data);
         console.log('results for GetUserInfo ' + results);
-        $('<div>Congrations to: '+results['firstname'] + ' '+ results['lastname'] +'</div>').prependTo('#messages'); 
+        $('<div class="animated infinite flash">Congrations to: '+results['firstname'] + ' '+ results['lastname'] +'</div>').appendTo('#messages'); 
         
       })
     </script>
   </head>
   <body>
     <h1 class="animated slideInLeft">{{ title }}</h1>
-    <p class="animated fadeInUp">Opportunities won will play a youtube video!!! </p>
-    <div id="messages" class="animated slideInUp"></div>    
-    <div id="player" class="animated zoomIn"></div>
+
+      <div id="messages" class="animated slideInUp bg-info"></div>
+    
+    <p id="player" class="animated zoomIn"></p>
+
   </body>
 </html>
