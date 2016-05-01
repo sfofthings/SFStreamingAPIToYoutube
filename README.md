@@ -12,13 +12,19 @@ This has been modified to include gulp, browserify and also React.js interface t
 config.js file needs to following:
 
 exports.PORT = 3001;
+
 exports.DEBUG = true;
+
 exports.ENVIRONMENT = 'production';
+
 exports.CALLBACK_URL = 'http://localhost:3001';
+
 exports.PUSH_TOPIC = 'Won'; // what ever the pushtopic is created from Developer Console
 
 exports.CLIENT_ID = ""; // Consumer Key
-exports.CLIENT_SECRET = ""; // Consumer Secret
-exports.USERNAME = ""; // Salesforce Login Username
-exports.PASSWORD = "" // Salesforce Password + Token (i.e if abcd is the password and xxxxxx is the security token then this parameter would be: abcdxxxxxx)
 
+exports.CLIENT_SECRET = ""; // Consumer Secret
+
+exports.USERNAME = ""; // Salesforce Login Username
+
+exports.PASSWORD = "" // Salesforce Password + Token (i.e if abcd is the password and xxxxxx is the security token then this parameter would be: abcdxxxxxx)
