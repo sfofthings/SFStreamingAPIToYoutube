@@ -2,10 +2,21 @@
 <html>
   <head>
     <title>{{ title }}</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.3/jquery.min.js"></script>
+    <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+<!-- Latest compiled and minified JavaScript -->
+
     <link rel="stylesheet" href="/stylesheets/style.css" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <link rel="stylesheet" href="/stylesheets/animate.min.css">
+
+    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/accounting.js/0.4.1/accounting.min.js"></script>
-    <script src="main.js"></script>
+
     <script src="http://www.youtube.com/player_api"></script>
 
     <script src="/socket.io/socket.io.js"></script>
@@ -13,10 +24,8 @@
   // create youtube player
     var player;
 
-
-
     function onYouTubePlayerAPIReady() {
-        $('#player').hide();
+        
         player = new YT.Player('player', {
           height: '390',
           width: '640',
@@ -25,6 +34,9 @@
             'onStateChange': onPlayerStateChange
           }
         });
+
+        $('#player').hide();
+
     }
 /*
     // autoplay video
@@ -33,7 +45,7 @@
     }
   */
     function playVideo() {
-        player.loadVideoById('zS1cLOIxsQ8',30,'large');        
+        player.loadVideoById('kVJu9AMJJr4',2,'large');        
         player.playVideo();
         $('#player').show();
     }
@@ -59,15 +71,20 @@
       })
 
       socket.on('GetUserInfo', function(data) {
+        console.log('GetUserInfo called');
+
+        console.log('data returned ' + data);
         var results = JSON.parse(data);
-        console.log('results is ' + results);
+        console.log('results for GetUserInfo ' + results);
+        $('<div>Congrations to: '+results['firstname'] + ' '+ results['lastname'] +'</div>').prependTo('#messages'); 
+        
       })
     </script>
   </head>
   <body>
-    <h1>{{ title }}</h1>
-    <p>Create an account in your Salesforce org and the same will appear here below in real-time !!! </p>
-    <div id="messages"></div>
-    <div id="player"></div>
+    <h1 class="animated slideInLeft">{{ title }}</h1>
+    <p class="animated fadeInUp">Opportunities won will play a youtube video!!! </p>
+    <div id="messages" class="animated slideInUp"></div>    
+    <div id="player" class="animated zoomIn"></div>
   </body>
 </html>

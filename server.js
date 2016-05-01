@@ -53,8 +53,16 @@ org.authenticate({ username: config.USERNAME, password: config.PASSWORD }, funct
     var ownerId = data['sobject']['OwnerId'];
     
     console.log('results' + ownerId);
-
-    getUser();
+    var q = "Select FirstName, LastName, Title from User where Id = '" + ownerId + "'";
+      org.query({ query: q , oauth: oauth }, function(err, resp) {
+        if(err) throw err;
+        else {
+          var user = resp.records[0];
+          console.log('user returned' + user);
+          socket.emit('GetUserInfo',JSON.stringify(user));
+        }
+      });
+     
 
     // emit the record to be displayed on the page
     socket.emit('record-processed', JSON.stringify(data));
@@ -63,20 +71,6 @@ org.authenticate({ username: config.USERNAME, password: config.PASSWORD }, funct
   });
 
 });
-
-
-var getUser = function(ownerId, org) {
-
-  var q = "Select FirstName, LastName, Title from User where UserId =" + ownerId + "'";
-  org.query({ query: q }, function(err, resp){
-
-    if(!err && resp.records) {
-
-      var user = resp.records[0];
-      socket.emit('GetUserInfo',user);
-    }
-  }
-};
 
 
 app.set('port', process.env.PORT || 3001);
