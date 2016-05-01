@@ -12,9 +12,9 @@ This sample code will play a youtube clip
 ](https://developers.google.com/youtube/iframe_api_reference)
 
 
-#Please note
+#Please note the following:
 
-config.js file needs to following:
+make sure to create a new *config.js* file needs to following:
 
 exports.PORT = 3001;
 
@@ -32,4 +32,4 @@ exports.CLIENT_SECRET = ""; // Consumer Secret
 
 exports.USERNAME = ""; // Salesforce Login Username
 
-exports.PASSWORD = "" // Salesforce Password + Token (i.e if abcd is the password and xxxxxx is the security token then this parameter would be: abcdxxxxxx)
+exports.PASSWORD = "" // Salesforce Password + Token
