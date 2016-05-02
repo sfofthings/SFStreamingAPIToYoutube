@@ -20,7 +20,7 @@ I will write some of the details of the PushTopic setup with Workbench in a blog
 
 ##Pre-requisite
 
-###Create a new Apex PushTopic
+###Create a new Apex PushTopic in WorkBench
 
 ```
 #!Apex
