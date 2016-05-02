@@ -1,5 +1,5 @@
 {
-  "name": "Force.com Streaming API to Youtube",
+  "name": "SalesForce Streaming API to Youtube",
   "version": "0.0.3",
   "engines": {
     "node": "0.8.x",
