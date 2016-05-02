@@ -1,5 +1,4 @@
 #Force.com Streaming API to notify Opportunities which have 'Closed Won' and play a Video!!!!
-======================================================================
 
 Derived from various sources from the web which allows Streaming API PushTopic messages to be subscribed by using Socket.io.
 
