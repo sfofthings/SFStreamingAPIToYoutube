@@ -62,12 +62,17 @@ exports.USERNAME = ""; // Salesforce Login Username
 exports.PASSWORD = "" // Salesforce Password + Token
 ```
 
-## Instructions
+## Installation
 ```
 
 git clone https://github.com/bonhomie/SFStreamingAPIToYoutube.git
+
 cd SFStreamingAPIToYoutube
+
 npm install
+
+npm install -g gulp
+
 ' Create a new config.js file, copy the variables from the step above
 gulp -- to execute the server.js on localhost:3001
 ```
